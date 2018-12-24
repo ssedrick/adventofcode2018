@@ -1,4 +1,4 @@
-package main
+package day2
 
 import (
 	"bufio"
@@ -6,14 +6,11 @@ import (
 	"os"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
+func star2(isTest bool) {
+	filename := "./day2/day2.dat"
+	if isTest {
+		filename = "./day2/day2.test.2.dat"
 	}
-}
-
-func main() {
-	filename := os.Args[1]
 
 	file, err := os.Open(filename)
 	check(err)
@@ -23,14 +20,12 @@ func main() {
 
 	for scanner1.Scan() {
 		line1 := scanner1.Text()
-		// fmt.Printf("Comparing to %s\n", line1)
 
 		file2, err := os.Open(filename)
 		check(err)
 		scanner2 := bufio.NewScanner(file2)
 		for scanner2.Scan() {
 			line2 := scanner2.Text()
-			// fmt.Printf("line1: %s;\nline2: %s;\n", line1, line2)
 			differs := 0
 
 			line2Runes := []rune(line2)
@@ -38,11 +33,9 @@ func main() {
 			for index, character1 := range line1Runes {
 				character2 := line2Runes[index]
 				if character2 != character1 {
-					// fmt.Printf("%c != %c; ", character1, character2)
 					differs++
 				}
 			}
-			// fmt.Printf("differs by %d characters\n\n", differs)
 
 			if differs == 1 {
 				fmt.Printf("found: %s : %s\n", line1, line2)

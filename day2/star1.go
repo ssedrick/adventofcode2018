@@ -1,4 +1,4 @@
-package main
+package day2
 
 import (
 	"bufio"
@@ -6,20 +6,11 @@ import (
 	"os"
 )
 
-func printMap(m map[rune]int) {
-	for key, value := range m {
-		fmt.Printf("%c - %d\n", key, value)
+func star1(isTest bool) {
+	filename := "./day2/day2.dat"
+	if isTest {
+		filename = "./day2/day2.test.dat"
 	}
-}
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func main() {
-	filename := os.Args[1]
 
 	file, err := os.Open(filename)
 	check(err)

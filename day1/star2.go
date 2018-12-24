@@ -1,4 +1,4 @@
-package main
+package day1
 
 import (
 	"bufio"
@@ -8,24 +8,7 @@ import (
 	"strconv"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func doOperation(operation byte, left int64, right int64) int64 {
-	if operation == '-' {
-		return left - right
-	} else if operation == '+' {
-		return left + right
-	}
-	return left
-}
-
-func main() {
-	filename := os.Args[1]
-
+func star2(filename string) {
 	file, err := os.Open(filename)
 	check(err)
 	defer file.Close()
